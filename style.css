@@ -16,7 +16,7 @@ body {
 /* 이력서 전체 도화지 컨테이너 */
 .resume-container {
     background-color: #ffffff;
-    width: 1200px;
+    width: 1400px;
     min-height: 1600px;
     padding: 80px 70px;
     border-radius: 40px;
@@ -246,7 +246,7 @@ body {
     width: 45%;
     background-color: #fae6ea;
     border-radius: 36px;
-    padding: 50px 40px;
+    padding: 20px 40px 50px;
     display: flex;
     flex-direction: column;
     gap: 50px;
