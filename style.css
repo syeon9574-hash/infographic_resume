@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    word-break: keep-all;
 }
 
 body {
@@ -16,7 +17,8 @@ body {
 /* 이력서 전체 도화지 컨테이너 */
 .resume-container {
     background-color: #ffffff;
-    width: 1400px;
+    width: 100%;
+    max-width: 1400px;
     min-height: 1600px;
     padding: 80px 70px;
     border-radius: 40px;
@@ -85,17 +87,25 @@ body {
 .profile-image-container {
     width: 220px;
     height: 220px;
-    border-radius: 50%;
+    border-radius: 24px;
     border: 8px solid #fcd2d9;
     background-color: #fff5f6;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 55px;
+    margin-bottom: 35px;
     box-shadow: 0 6px 15px rgba(250, 210, 220, 0.5);
     font-size: 17px;
     color: #cb8592;
     font-weight: 500;
+    overflow: hidden;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .name-title h1 {
@@ -434,18 +444,24 @@ body {
 /* --- MY PROFILE 포인트 형태 스타일 추가 --- */
 .profile-point {
     font-size: 18px;
-    line-height: 1.7;
+    line-height: 1.75;
     color: #5a5556;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
+}
+
+.profile-point span:not(.check-icon) {
+    flex: 1;
+    line-height: 1.6;
 }
 
 .check-icon {
     color: #c9808e;
     font-weight: bold;
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 /* ===================================================
@@ -556,4 +572,220 @@ body {
     background-color: #ba6676;
     border-color: #ba6676;
     box-shadow: 0 0 0 6px rgba(250, 225, 230, 0.8);
+}
+
+/* ===================================================
+   반응형 (모바일/태블릿) 스타일: 텍스트 및 레이아웃 밀림 방지
+   =================================================== */
+@media screen and (max-width: 1024px) {
+    body {
+        padding: 20px;
+    }
+
+    .resume-container {
+        padding: 40px 30px;
+        min-height: auto;
+    }
+
+    .resume-body {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .left-column,
+    .right-column,
+    .left-header {
+        width: 100%;
+    }
+
+    .left-header {
+        padding-top: 40px;
+    }
+
+    .profile-image-container {
+        margin-bottom: 25px;
+    }
+
+    .right-column {
+        padding: 30px;
+    }
+
+    .timeline-axis {
+        display: none;
+    }
+
+    .timeline-nodes {
+        flex-direction: column;
+        gap: 30px;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .timeline-node {
+        width: 100%;
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 20px;
+        position: relative;
+        background-color: transparent;
+    }
+
+    .timeline-dot {
+        margin-bottom: 0;
+        margin-top: 5px;
+        flex-shrink: 0;
+        z-index: 2;
+        /* 선 위에 오도록 설정 */
+        position: relative;
+        /* 가상 연결선의 기준점 */
+    }
+
+    /* 모바일 세로 점선 타임라인 축 추가 (닷에서 수직 하강 방식) */
+    .timeline-dot::after {
+        content: '';
+        position: absolute;
+        top: 16px;
+        /* 닷의 최하단 바로 밑에서 시작하여 겹침 방지 */
+        left: 7px;
+        /* 16px 닷의 완벽한 중앙(8px)에 매칭 */
+        box-sizing: content-box;
+        /* border-box로 인한 보더 붕괴 방지 */
+        width: 0;
+        height: 120px;
+        /* 다음 닷까지 충분히 도달하는 수직 길이 */
+        border-left: 2px dashed #e5cfcc;
+        z-index: 1;
+        /* 양수 z-index로 부모 배경색 위에 정상 노출 */
+        display: block;
+    }
+
+    .timeline-node:last-child .timeline-dot::after {
+        display: none;
+        /* 마지막 노드 닷에는 하강 점선 생략 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .resume-container {
+        padding: 35px 20px;
+        border-radius: 24px;
+    }
+
+    .profile-image-container {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 25px;
+    }
+
+    .name-title h1 {
+        font-size: 36px;
+    }
+
+    .name-title p {
+        font-size: 18px;
+    }
+
+    /* 모바일에서 타이핑 애니메이션 텍스트 크기에 맞게 너비 조절 */
+    .typing-effect {
+        animation: typingMobile 2s steps(13) forwards, blink 0.6s step-end infinite;
+    }
+
+    .section-label {
+        font-size: 16px;
+        padding: 6px 20px;
+    }
+
+    .section-content p,
+    .profile-point,
+    .skill-name,
+    .exp-details li,
+    .contact-row {
+        font-size: 15px;
+    }
+
+    .exp-title {
+        font-size: 19px;
+    }
+
+    .skill-bar-wrapper {
+        gap: 10px;
+    }
+
+    .timeline-year {
+        font-size: 16px;
+    }
+
+    .timeline-text h4 {
+        font-size: 16px;
+    }
+
+    .timeline-text p {
+        font-size: 14px;
+    }
+}
+
+/* 초소형 모바일 기기(iPhone SE 등) 최적화 */
+@media screen and (max-width: 480px) {
+    .resume-container {
+        padding: 25px 15px;
+    }
+
+    .profile-image-container {
+        width: 140px;
+        height: 140px;
+        border-width: 6px;
+    }
+
+    .name-title h1 {
+        font-size: 30px;
+    }
+
+    .name-title p {
+        font-size: 16px;
+    }
+
+    .typing-effect {
+        animation: typingSE 2s steps(13) forwards, blink 0.6s step-end infinite;
+    }
+
+    .right-column {
+        padding: 20px 15px;
+    }
+
+    .timeline-box {
+        padding: 20px;
+    }
+
+    .timeline-nodes {
+        padding-left: 10px;
+    }
+}
+
+@keyframes typingMobile {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 162px;
+    }
+
+    /* 모바일 글자폭에 맞춤 */
+}
+
+@keyframes typingSE {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 144px;
+    }
+
+    /* 초소형 기기 글자폭에 맞춤 */
 }
