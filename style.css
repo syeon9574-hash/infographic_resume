@@ -1,0 +1,559 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fcf8f9;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+/* 이력서 전체 도화지 컨테이너 */
+.resume-container {
+    background-color: #ffffff;
+    width: 1200px;
+    min-height: 1600px;
+    padding: 80px 70px;
+    border-radius: 40px;
+    box-shadow: 0 12px 40px rgba(240, 220, 225, 0.6);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 파스텔 핑크 데코레이션 요소 그래픽 구현 */
+.deco-top-left {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 340px;
+    height: 240px;
+    background-color: #fae1e6;
+    border-radius: 0 0 160px 0;
+    z-index: 1;
+}
+
+.deco-grid {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 200px;
+    background-image:
+        linear-gradient(to right, rgba(250, 210, 220, 0.4) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(250, 210, 220, 0.4) 1px, transparent 1px);
+    background-size: 26px 26px;
+    z-index: 1;
+}
+
+.deco-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    height: 160px;
+    background-image:
+        linear-gradient(to right, rgba(250, 210, 220, 0.4) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(250, 210, 220, 0.4) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: 0 100px 0 0;
+    z-index: 1;
+}
+
+/* 메인 상단 레이아웃 */
+.resume-header {
+    display: flex;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.left-header {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 80px;
+}
+
+.profile-image-container {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 8px solid #fcd2d9;
+    background-color: #fff5f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 55px;
+    box-shadow: 0 6px 15px rgba(250, 210, 220, 0.5);
+    font-size: 17px;
+    color: #cb8592;
+    font-weight: 500;
+}
+
+.name-title h1 {
+    font-size: 50px;
+    color: #4a3b3e;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.name-title p {
+    font-size: 22px;
+    color: #d68a99;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* 메인 콘텐츠 구조 */
+.resume-body {
+    display: flex;
+    flex: 1;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+/* 좌측 컬럼 */
+.left-column {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 85px;
+}
+
+/* 템플릿의 둥근 테두리 제목 라벨 완벽 모사 */
+.section-label-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.section-label-container::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #eedad2;
+    margin-left: 15px;
+}
+
+.section-label {
+    border: 1.5px solid #bfa49c;
+    border-radius: 24px;
+    padding: 8px 26px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #5a4b48;
+    letter-spacing: 0.5px;
+    background-color: #ffffff;
+    display: inline-block;
+}
+
+.section-icon-circle {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid #bfa49c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    background-color: #ffffff;
+}
+
+.section-icon-inner {
+    width: 8px;
+    height: 8px;
+    background-color: #bfa49c;
+    border-radius: 50%;
+}
+
+/* 섹션 본문 텍스트 */
+.section-content {
+    padding-left: 6px;
+}
+
+.section-content p {
+    font-size: 18px;
+    line-height: 1.75;
+    color: #5a5556;
+}
+
+/* SKILL 게이지 바 조절 슬롯 */
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5a5556;
+}
+
+.skill-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.skill-progress-bg {
+    flex: 1;
+    height: 14px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-progress-fill {
+    height: 100%;
+    background-color: #b3a594;
+    border-radius: 10px;
+}
+
+.skill-percent {
+    font-size: 16px;
+    font-weight: 500;
+    color: #8a8082;
+    width: 40px;
+    text-align: right;
+}
+
+/* 우측 컬럼 (파스텔 핑크 카드 배경 통 슬롯) */
+.right-column {
+    width: 45%;
+    background-color: #fae6ea;
+    border-radius: 36px;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-self: flex-start;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 카드 내부 라벨 바 가로 라인 */
+.right-label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 1.5px solid rgba(191, 164, 156, 0.4);
+    padding-bottom: 15px;
+}
+
+.right-label-container .section-label {
+    border-color: #bfa49c;
+    background-color: #fae6ea;
+}
+
+.right-column-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 경력 사항 리스트 */
+.exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.exp-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-period {
+    font-size: 16px;
+    font-weight: 600;
+    color: #c9808e;
+    margin-bottom: 6px;
+}
+
+.exp-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #4a3b3e;
+    margin-bottom: 10px;
+}
+
+.exp-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.exp-details li {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #5a5052;
+    position: relative;
+    padding-left: 18px;
+}
+
+.exp-details li::before {
+    content: '•';
+    position: absolute;
+    left: 2px;
+    color: #c9808e;
+    font-weight: bold;
+}
+
+/* 터닝 포인트 말풍선 */
+.exp-turning-point {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ba6676;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-left: 4px solid #fcd2d9;
+}
+
+/* 연락처 레이아웃 */
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+    color: #5a5052;
+}
+
+.contact-type {
+    font-weight: 700;
+    color: #9d847e;
+    width: 80px;
+}
+
+/* 하단 EDUCATION 점선 타임라인 박스 */
+.resume-footer {
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-box {
+    background-color: #fdf5f6;
+    border-radius: 32px;
+    padding: 40px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.timeline-axis {
+    position: absolute;
+    top: 56px;
+    left: 50px;
+    right: 50px;
+    height: 1.5px;
+    background: repeating-linear-gradient(90deg, #e5cfcc 0px, #e5cfcc 8px, transparent 8px, transparent 16px);
+}
+
+.timeline-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-node {
+    width: 30%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border: 3px solid #c9808e;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.timeline-node.active .timeline-dot {
+    background-color: #c9808e;
+    box-shadow: 0 0 0 5px #fae1e6;
+}
+
+.timeline-year {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4a3b3e;
+    margin-bottom: 8px;
+}
+
+.timeline-text h4 {
+    font-size: 18px;
+    color: #5a4b48;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.timeline-text p {
+    font-size: 15px;
+    color: #8a7b78;
+    line-height: 1.5;
+}
+
+/* --- MY PROFILE 포인트 형태 스타일 추가 --- */
+.profile-point {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #5a5556;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.check-icon {
+    color: #c9808e;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* ===================================================
+   여기서부터는 style.css 맨 아래에 통째로 붙여넣어 주세요
+   =================================================== */
+
+/* [인터랙션 1] 타이핑 및 커서 깜빡임 효과 */
+.typing-effect {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #d68a99;
+    width: 0;
+    animation: typing 2s steps(13) forwards, blink 0.6s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 198px;
+    }
+
+    /* 글자 전체가 보이는 가로폭 */
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #d68a99;
+    }
+}
+
+/* [인터랙션 2] 스킬바 차오르는 애니메이션 (초기 0에서 타깃 수치까지) */
+.skill-progress-fill {
+    width: 0;
+}
+
+.fill-figma {
+    animation: fillFigma 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+.fill-prompt {
+    animation: fillPrompt 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+.fill-web {
+    animation: fillWeb 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fillFigma {
+    to {
+        width: 90%;
+    }
+}
+
+@keyframes fillPrompt {
+    to {
+        width: 85%;
+    }
+}
+
+@keyframes fillWeb {
+    to {
+        width: 60%;
+    }
+}
+
+/* [인터랙션 3] 우측 큰 카드 마우스 오버 시 공중 부양 */
+.right-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(240, 200, 210, 0.8);
+}
+
+/* [인터랙션 4] 개별 경력 및 연락처 마우스 오버 시 미세 반응 */
+.exp-item {
+    transition: transform 0.3s ease;
+}
+
+.exp-item:hover {
+    transform: translateX(3px);
+}
+
+.contact-row {
+    transition: transform 0.3s ease;
+}
+
+.contact-row:hover {
+    transform: translateX(5px);
+}
+
+/* [인터랙션 5] 하단 타임라인 동그라미 팽창 효과 */
+.timeline-dot {
+    transition: all 0.3s ease;
+}
+
+.timeline-node:hover {
+    transform: translateY(-3px);
+}
+
+.timeline-node:hover .timeline-dot {
+    background-color: #ba6676;
+    border-color: #ba6676;
+    box-shadow: 0 0 0 6px rgba(250, 225, 230, 0.8);
+}
